@@ -1,26 +1,58 @@
-package JDBCdemo1;
+package sample;
 
+//import com.sun.javafx.robot.impl.FXRobotHelper;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
-import java.sql.Connection;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
+
 public class Login {
-    public String login() throws SQLException {
+    static String ltype="0";
+    @FXML
+    private AnchorPane login;
+    @FXML
+    private Button button;
+    @FXML
+    private TextField text;
+    @FXML
+    private PasswordField password;
+    @FXML
+    void login(ActionEvent event) throws SQLException, IOException {
+
+
         JDBCdemo1.login("sa","lj000000","HotelDataBase");
-        System.out.println("请输入用户名:");
-        Scanner sc=new Scanner(System.in);
-        String name=sc.next();
-        System.out.println("请输入密码:");
-        String num=sc.next();
-        ResultSet resultSet=JDBCdemo1.select(1,"Ltype","Login","Lname",name,"Lnum",num);
+        ResultSet resultSet=JDBCdemo1.select(1,"Ltype","Login","Lname",text.getText(),"Lnum",password.getText());
         if(resultSet.next()){
-            System.out.println("Login success");
-            System.out.println("身份是："+resultSet.getNString("Ltype"));
+            Alert alert1=new Alert(Alert.AlertType.INFORMATION);
+            alert1.headerTextProperty().set("登录成功，你的身份为："+resultSet.getNString("Ltype"));
+            ltype= resultSet.getNString("Ltype");
+            alert1.showAndWait();
+            Main.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Theme.fxml")),800,600));
         }else{
-            System.out.println("Login lose");
+            Alert alert2=new Alert(Alert.AlertType.WARNING);
+            alert2.headerTextProperty().set("登录失败,请重新登录");
+            alert2.showAndWait();
+
         }
-        return resultSet.getString("Ltype");
+
     }
+
+    public void log() throws SQLException, IOException {
+
+
+
+
+    }
+
+
 
 }
