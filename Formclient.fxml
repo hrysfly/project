@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="623.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.192" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Formclient">
+   <children>
+      <TableView fx:id="Formclient" layoutY="1.0" prefHeight="622.0" prefWidth="740.0">
+        <columns>
+          <TableColumn fx:id="Cid" prefWidth="120.0" text="身份证号" />
+          <TableColumn fx:id="Cname" text="客户名" />
+            <TableColumn fx:id="Rnum" text="房间号" />
+            <TableColumn fx:id="Rlevel" text="房间类型" />
+            <TableColumn fx:id="Stime" prefWidth="120.0" text="入住时间" />
+            <TableColumn fx:id="Etime" prefWidth="120.0" text="退房时间" />
+            <TableColumn fx:id="Cost" text="消费" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
